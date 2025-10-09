@@ -1,6 +1,10 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using ProjectPolyclinic.Repositories;
 using ProjectPolyclinic.Repositories.Implementations;
+using Serilog;
 using Unity;
+using Unity.Microsoft.Logging;
 
 namespace ProjectPolyclinic
 {
@@ -19,16 +23,31 @@ namespace ProjectPolyclinic
         }
 
          private static IUnityContainer CreateContainer ()
-        {
+         {
             var container = new UnityContainer();
+
+            container.AddExtension(new LoggingExtension(CreateLoggerFactory()));
 
             container.RegisterType<IPacientRepository, PacientRepository>();
             container.RegisterType<IMedicineRepository, MedicineRepository>();
             container.RegisterType<IMedicineReplenishmentRepository, MedicineReplenishmentRepository>();
             container.RegisterType<IHealingPacientRepository, HealingPacientRepository>();
             container.RegisterType<IEmployeeRepository, EmployeeRepository>();
+            container.RegisterType<IConnectionString, ConnectionString>();
 
             return container;
+         }
+
+        private static LoggerFactory CreateLoggerFactory()
+        {
+            var loggerFactory = new LoggerFactory();
+            loggerFactory.AddSerilog(new LoggerConfiguration()
+            .ReadFrom.Configuration(new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build())
+            .CreateLogger());
+            return loggerFactory;
         }
     }
 }
