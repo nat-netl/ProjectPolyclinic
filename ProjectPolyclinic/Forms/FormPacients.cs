@@ -63,7 +63,7 @@ namespace ProjectPolyclinic.Forms
             }
             try
             {
-            var form = _container.Resolve<FormPacient>();
+                var form = _container.Resolve<FormPacient>();
                 form.Id = findId;
                 form.ShowDialog();
                 LoadList();
