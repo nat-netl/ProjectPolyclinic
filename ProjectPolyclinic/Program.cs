@@ -1,8 +1,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using PdfSharp.Fonts;
 using ProjectPolyclinic.Repositories;
 using ProjectPolyclinic.Repositories.Implementations;
 using Serilog;
+using System.Text;
 using Unity;
 using Unity.Microsoft.Logging;
 
@@ -19,7 +21,9 @@ namespace ProjectPolyclinic
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            GlobalFontSettings.FontResolver = new CustomFontResolver();
             Application.Run(CreateContainer().Resolve<FormPolyclinic>());
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
          private static IUnityContainer CreateContainer ()

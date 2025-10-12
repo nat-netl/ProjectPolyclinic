@@ -26,4 +26,16 @@ public class MedicineReplenishment
             MedicineMedicineReplenishment = medicineMedicineReplenishment
         };
     }
+
+    public static MedicineReplenishment CreateOperation(TempMedicineMedicineReplenishment tempMedicineMedicineReplenishment, 
+        IEnumerable<MedicineMedicineReplenishment> medicineMedicineReplenishment)
+    {
+        return new MedicineReplenishment
+        {
+            Id = tempMedicineMedicineReplenishment.Id,
+            EmployeeId = tempMedicineMedicineReplenishment.EmployeeId,
+            DateReceipt = tempMedicineMedicineReplenishment.DateReceipt,
+            MedicineMedicineReplenishment = medicineMedicineReplenishment
+        };
+    }
 }

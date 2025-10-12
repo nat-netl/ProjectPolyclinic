@@ -85,16 +85,20 @@ public class MedicineReplenishmentRepository : IMedicineReplenishmentRepository
     public IEnumerable<MedicineReplenishment> ReadMedicineReplenishment(DateTime? dateForm = null, DateTime? dateTo = null, int? medicineId = null, int? employeeId = null)
     {
         _logger.LogInformation("Получение всех объектов");
+
         try
         {
-            using var connection = new
-            NpgsqlConnection(_connectionString.ConnectionString);
-            var querySelect = @"SELECT * FROM MedicineReplenishments";
-            var medicineReplenishment =
-            connection.Query<MedicineReplenishment>(querySelect);
+            using var connection = new NpgsqlConnection(_connectionString.ConnectionString);
+            var querySelect = @"
+                SELECT fr.*, ffr.MedicineId, ffr.Count FROM MedicineReplenishments fr
+                INNER JOIN MedicineMedicineReplenishments ffr ON ffr.MedicineReplenishmentId = fr.Id";
+            var medicineReplenishments =
+            connection.Query<TempMedicineMedicineReplenishment>(querySelect);
             _logger.LogDebug("Полученные объекты: {json}",
-            JsonConvert.SerializeObject(medicineReplenishment));
-            return medicineReplenishment;
+            JsonConvert.SerializeObject(medicineReplenishments));
+            return medicineReplenishments.GroupBy(x => x.Id, y => y,
+            (key, value) => MedicineReplenishment.CreateOperation(value.First(),
+            value.Select(z => MedicineMedicineReplenishment.CreateElement(0, z.MedicineId, z.Count)))).ToList();
         }
         catch (Exception ex)
         {
