@@ -77,15 +77,49 @@ namespace ProjectPolyclinic
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка при загрузке",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void FormPolyclinic_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void DictionaryReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _container.Resolve<FormDirectoryReport>().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MedicamentReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _container.Resolve<FormMedicineReport>().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MedicineDistributionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _container.Resolve<FormHealingPacientDistributionReport>().ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

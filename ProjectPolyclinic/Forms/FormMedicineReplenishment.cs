@@ -73,7 +73,9 @@ namespace ProjectPolyclinic.Forms
                 Convert.ToInt32(row.Cells["ColumnMedicine"].Value),
                 Convert.ToInt32(row.Cells["ColumnCount"].Value)));
             }
-            return list;
+
+            return list.GroupBy(x => x.MedicineId, x => x.Count, (id, counts) => 
+                MedicineMedicineReplenishment.CreateElement(0, id, counts.Sum())).ToList();
         }
 
         private void FormMedicineReplenishment_Load(object sender, EventArgs e)

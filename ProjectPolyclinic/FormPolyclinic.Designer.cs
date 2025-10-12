@@ -37,6 +37,9 @@
             GiveMedicamentsToolStripMenuItem = new ToolStripMenuItem();
             ReplanishmentMedicamentsToolStripMenuItem = new ToolStripMenuItem();
             отчетыToolStripMenuItem = new ToolStripMenuItem();
+            dictionaryReportToolStripMenuItem = new ToolStripMenuItem();
+            medicamentReportToolStripMenuItem = new ToolStripMenuItem();
+            medicineDistributionToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -100,9 +103,34 @@
             // 
             // отчетыToolStripMenuItem
             // 
+            отчетыToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { dictionaryReportToolStripMenuItem, medicamentReportToolStripMenuItem, medicineDistributionToolStripMenuItem });
             отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
             отчетыToolStripMenuItem.Size = new Size(60, 20);
             отчетыToolStripMenuItem.Text = "Отчеты";
+            // 
+            // dictionaryReportToolStripMenuItem
+            // 
+            dictionaryReportToolStripMenuItem.Name = "dictionaryReportToolStripMenuItem";
+            dictionaryReportToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.W;
+            dictionaryReportToolStripMenuItem.Size = new Size(282, 22);
+            dictionaryReportToolStripMenuItem.Text = "Документ со справочниками";
+            dictionaryReportToolStripMenuItem.Click += DictionaryReportToolStripMenuItem_Click;
+            // 
+            // medicamentReportToolStripMenuItem
+            // 
+            medicamentReportToolStripMenuItem.Name = "medicamentReportToolStripMenuItem";
+            medicamentReportToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.E;
+            medicamentReportToolStripMenuItem.Size = new Size(282, 22);
+            medicamentReportToolStripMenuItem.Text = "Движение медикаментов";
+            medicamentReportToolStripMenuItem.Click += MedicamentReportToolStripMenuItem_Click;
+            // 
+            // medicineDistributionToolStripMenuItem
+            // 
+            medicineDistributionToolStripMenuItem.Name = "medicineDistributionToolStripMenuItem";
+            medicineDistributionToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.P;
+            medicineDistributionToolStripMenuItem.Size = new Size(282, 22);
+            medicineDistributionToolStripMenuItem.Text = "Распределение медикаментов";
+            medicineDistributionToolStripMenuItem.Click += MedicineDistributionToolStripMenuItem_Click;
             // 
             // FormPolyclinic
             // 
@@ -132,5 +160,8 @@
         private ToolStripMenuItem GiveMedicamentsToolStripMenuItem;
         private ToolStripMenuItem ReplanishmentMedicamentsToolStripMenuItem;
         private ToolStripMenuItem отчетыToolStripMenuItem;
+        private ToolStripMenuItem dictionaryReportToolStripMenuItem;
+        private ToolStripMenuItem medicamentReportToolStripMenuItem;
+        private ToolStripMenuItem medicineDistributionToolStripMenuItem;
     }
 }

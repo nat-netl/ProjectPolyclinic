@@ -23,18 +23,18 @@ public class HealingPacientRepository : IHealingPacientRepository
         _logger = logger;
     }
 
-    public void CreateHealingPacient(HealingPacient feedingAnimal)
+    public void CreateHealingPacient(HealingPacient healingPacient)
     {
         _logger.LogInformation("Добавление объекта");
         _logger.LogDebug("Объект: {json}",
-        JsonConvert.SerializeObject(feedingAnimal));
+        JsonConvert.SerializeObject(healingPacient));
         try
         {
             using var connection = new NpgsqlConnection(_connectionString.ConnectionString);
             var queryInsert = @"
             INSERT INTO HealingPacients (MedicineId, EmployeeId, PacientId, HealingDate, Ration)
             VALUES (@MedicineId, @EmployeeId, @PacientId, @HealingDate, @Ration)";
-            connection.Execute(queryInsert, feedingAnimal);
+            connection.Execute(queryInsert, healingPacient);
         }
         catch (Exception ex)
         {

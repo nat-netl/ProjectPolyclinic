@@ -33,7 +33,7 @@ namespace ProjectPolyclinic.Forms
             comboBoxMedicament.DisplayMember = "Name";
             comboBoxMedicament.ValueMember = "Id";
             comboBoxPacient.DataSource = pacientRepository.ReadPacients();
-            comboBoxPacient.DisplayMember = "AnimalNickName";
+            comboBoxPacient.DisplayMember = "PacientName";
             comboBoxPacient.ValueMember = "Id";
         }
 

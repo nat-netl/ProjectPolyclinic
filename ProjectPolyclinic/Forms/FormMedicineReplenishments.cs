@@ -19,11 +19,11 @@ namespace ProjectPolyclinic.Forms
         private readonly IMedicineReplenishmentRepository _medicineReplenishmentRepository;
 
 
-        public FormMedicineReplenishments(IUnityContainer container, IMedicineReplenishmentRepository feedReplenishmentRepository)
+        public FormMedicineReplenishments(IUnityContainer container, IMedicineReplenishmentRepository medicineReplenishmentRepository)
         {
             InitializeComponent();
             _container = container ?? throw new ArgumentNullException(nameof(container));
-            _medicineReplenishmentRepository = feedReplenishmentRepository ?? throw new ArgumentNullException(nameof(feedReplenishmentRepository));
+            _medicineReplenishmentRepository = medicineReplenishmentRepository ?? throw new ArgumentNullException(nameof(medicineReplenishmentRepository));
         }
 
 
